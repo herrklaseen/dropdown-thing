@@ -1,13 +1,13 @@
-.dropdown { 
+.dropdown {
   position: relative;
   margin-bottom: 1rem;
-} 
+}
 
 .control.is-open {
   box-shadow: 0px 1px 4px #aaa7;
 }
 
-.dropdown .options { 
+.dropdown .options {
   visibility: hidden;
 }
 
@@ -54,7 +54,6 @@
   padding-left: 0.3rem;
 }
 
-
 .selected .icon {
   display: block;
   font-size: 0.8rem;
@@ -63,4 +62,3 @@
   top: 50%;
   transform: translate(0, -55%);
 }
-

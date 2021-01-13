@@ -3,31 +3,31 @@ import './App.css'
 import Dropdown from './Dropdown'
 
 const fruit = [
-  { 
+  {
     id: 1,
-    name: "Apple" 
+    name: "Apple"
   },
-  { 
+  {
     id: 2,
     name: "Orange"
   },
   {
-    id: 3, 
+    id: 3,
     name: "Pineapple"
   }
 ]
 
 const iceCream = [
-  { 
+  {
     id: 1,
-    name: "Vanilla" 
+    name: "Vanilla"
   },
-  { 
+  {
     id: 2,
     name: "Chocolate"
   },
   {
-    id: 3, 
+    id: 3,
     name: "Spiderlegs"
   }
 ]
@@ -54,7 +54,7 @@ export default class App extends React.Component {
   }
 
   handleDropdownActivation() {
-    return (id) => { 
+    return (id) => {
       if (this.state.activeDropdown === id) {
         this.setState({ activeDropdown: null })
       } else {
@@ -72,7 +72,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <h1>The dropdown</h1>
-        <Dropdown 
+        <Dropdown
           label="Your favorite fruit"
           id={1}
           options={fruit}
@@ -82,7 +82,7 @@ export default class App extends React.Component {
           onActivate={this.handleDropdownActivation()}
         ></Dropdown>
 
-        <Dropdown 
+        <Dropdown
           label="Your favorite ice cream"
           id={2}
           options={iceCream}
