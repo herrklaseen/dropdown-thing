@@ -71,26 +71,28 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>The dropdown</h1>
-        <Dropdown
-          label="Your favorite fruit"
-          id={1}
-          options={fruit}
-          selected={this.state.selectedFruit}
-          isOpen={this.isOpen()}
-          onSelect={this.handleFruitSelection()}
-          onActivate={this.handleDropdownActivation()}
-        ></Dropdown>
+        <section className="wrapper">
+          <h1>The dropdown</h1>
+          <Dropdown
+            label="Your favorite fruit"
+            id={1}
+            options={fruit}
+            selected={this.state.selectedFruit}
+            isOpen={this.isOpen()}
+            onSelect={this.handleFruitSelection()}
+            onActivate={this.handleDropdownActivation()}
+          ></Dropdown>
 
-        <Dropdown
-          label="Your favorite ice cream"
-          id={2}
-          options={iceCream}
-          selected={this.state.selectedIceCream}
-          isOpen={this.isOpen()}
-          onSelect={this.handleIceCreamSelection()}
-          onActivate={this.handleDropdownActivation()}
-        ></Dropdown>
+          <Dropdown
+            label="Your favorite ice cream"
+            id={2}
+            options={iceCream}
+            selected={this.state.selectedIceCream}
+            isOpen={this.isOpen()}
+            onSelect={this.handleIceCreamSelection()}
+            onActivate={this.handleDropdownActivation()}
+          ></Dropdown>
+        </section>
       </div>
     )
   }
