@@ -6,14 +6,6 @@ export default class Dropdown extends React.Component {
     super(props)
   }
 
-  handleSelect(option) {
-    this.props.onSelect(option)
-  }
-
-  handleActivate() {
-    this.props.onActivate(this.props.id)
-  }
-
   renderOptions() {
     return this.props.options.map((option) => {
       return (
@@ -21,7 +13,7 @@ export default class Dropdown extends React.Component {
          className="option"
          tabIndex="0"
          key={option.id.toString()}
-         onClick={() => { this.handleSelect(option) }}
+         onClick={() => { this.props.onSelect(option) }}
         >
           { option.name } { this.isSelected(option) ? " ✔" : "" } 
         </li>
@@ -43,7 +35,7 @@ export default class Dropdown extends React.Component {
           <div 
            className="selected"
            tabIndex="0"
-           onClick={() => { this.handleActivate() }}
+           onClick={() => { this.props.onActivate(this.props.id) }}
           >
             { this.props.selected.name } 
             <div className="icon">{ this.props.isOpen(this.props.id) ? "▲" : "▼" }</div>
