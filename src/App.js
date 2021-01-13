@@ -91,17 +91,6 @@ export default class App extends React.Component {
           onSelect={this.handleIceCreamSelection()}
           onActivate={this.handleDropdownActivation()}
         ></Dropdown>
-
-        <select id="select1">
-          <option>Hello1</option>
-          <option>Hello2</option>
-        </select>
-
-        <select id="select2">
-          <option>Hello4</option>
-          <option>Hello6</option>
-        </select>
-
       </div>
     )
   }
