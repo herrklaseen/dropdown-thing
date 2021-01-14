@@ -27,26 +27,28 @@ export default class Dropdown extends React.Component {
     return option.id === this.props.selected.id
   }
 
-  handleNativeSelect(event) {
-    if (event.target.value) {
-      const selected = this.props.options.find(option => event.target.value === option.name)
-      if (selected) {
-        this.props.onSelect(selected)
-      }
-    }
-
-  }
   handleKeyboardActivation(event) {
     if (event.code === "Space") {
       this.props.onActivate(this.props.id)
-    } else if (this.isOpen() && event.code === "ArrowDown") {
-      let nodes = event.target.nextElementSibling.querySelectorAll("li")
-      nodes[0].focus()
-    } else if (this.isOpen() && event.code === "ArrowUp") {
-      let nodes = event.target.nextElementSibling.querySelectorAll("li")
-      nodes[nodes.length - 1].focus()
-    } else if (this.isOpen() && event.code === "Escape") {
-      this.props.onActivate(this.props.id)
+      return
+    }
+
+    if (this.isOpen()) {
+      let nodes
+      switch (event.code) {
+        case "ArrowDown":
+          nodes = event.target.nextElementSibling.querySelectorAll("li")
+          nodes[0].focus()
+          break
+        case "ArrowUp":
+          nodes = event.target.nextElementSibling.querySelectorAll("li")
+          nodes[nodes.length - 1].focus()
+          break
+        case "Escape":
+          this.props.onActivate(this.props.id)
+          break
+        default:
+      }
     }
   }
 
