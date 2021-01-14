@@ -99,7 +99,9 @@ export default class Dropdown extends React.Component {
           { this.props.label }
         </label>
 
-        <div className={["control", this.isOpen() ? "is-open" : ""].join(" ")} aria-hidden="true">
+        <div
+          className={["control", this.isOpen() ? "is-open" : ""].join(" ")}
+        >
           <div
             className="selected"
             tabIndex="0"
@@ -109,7 +111,11 @@ export default class Dropdown extends React.Component {
             onKeyUp={(event) => { this.handleKeyboardActivation(event) }}
           >
             { this.props.selected.name }
-            <div className="icon" aria-hidden="true">{ this.isOpen() ? "▲" : "▼" }</div>
+
+            <div className="icon" aria-hidden="true">
+              { this.isOpen() ? "▲" : "▼" }
+            </div>
+
           </div>
 
           <ul className={["options", this.isOpen() ? "is-open" : ""].join(" ")}
