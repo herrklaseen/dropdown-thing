@@ -7,20 +7,27 @@ export default class Dropdown extends React.Component {
   }
 
   renderOptions() {
-    return this.props.options.map((option) => {
+    if (this.props.isOpen) {
+      const list = this.props.options.map((option) => {
+        return (
+          <li
+            className="option"
+            tabIndex="0"
+            key={option.id.toString()}
+            onClick={() => { this.props.onSelect(option) }}
+            onKeyUp={(event) => { this.handleOptionNavigation(event, option) }}
+            role="menuitem"
+          >
+            { option.name } { this.isSelected(option) ? <span aria-label="selected"> ✔ </span> : "" }
+          </li>
+        )
+      })
       return (
-        <li
-          className="option"
-          tabIndex="0"
-          key={option.id.toString()}
-          onClick={() => { this.props.onSelect(option) }}
-          onKeyUp={(event) => { this.handleOptionNavigation(event, option) }}
-          role="menuitem"
-        >
-          { option.name } { this.isSelected(option) ? <span aria-label="selected"> ✔ </span> : "" }
-        </li>
+        <ul className="options is-open">
+          { list }
+        </ul>
       )
-    })
+    }
   }
 
   isSelected(option) {
@@ -33,7 +40,7 @@ export default class Dropdown extends React.Component {
       return
     }
 
-    if (this.isOpen()) {
+    if (this.props.isOpen) {
       let nodes
       switch (event.code) {
         case "ArrowDown":
@@ -84,10 +91,6 @@ export default class Dropdown extends React.Component {
     }
   }
 
-  isOpen() {
-    return this.props.isOpen(this.props.id)
-  }
-
   labelText() {
     return "label" + this.props.id
   }
@@ -100,28 +103,26 @@ export default class Dropdown extends React.Component {
         </label>
 
         <div
-          className={["control", this.isOpen() ? "is-open" : ""].join(" ")}
+          className={["control", this.props.isOpen ? "is-open" : ""].join(" ")}
         >
           <div
             className="selected"
             tabIndex="0"
             role="button"
             aria-labelledby={this.labelText()}
-            onClick={() => { this.props.onActivate(this.props.id) }}
+            onClick={() => { this.props.onActivate() }}
             onKeyUp={(event) => { this.handleKeyboardActivation(event) }}
           >
             { this.props.selected.name }
 
             <div className="icon" aria-hidden="true">
-              { this.isOpen() ? "▲" : "▼" }
+              { this.props.isOpen ? "▲" : "▼" }
             </div>
 
           </div>
 
-          <ul className={["options", this.isOpen() ? "is-open" : ""].join(" ")}
-          >
-            { this.renderOptions() }
-          </ul>
+          { this.renderOptions() }
+
         </div>
       </div>
     )

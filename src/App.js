@@ -31,6 +31,9 @@ const iceCream = [
     name: "Spiderlegs"
   }
 ]
+
+const dropdowns = [1,2]
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -53,18 +56,12 @@ export default class App extends React.Component {
     }
   }
 
-  handleDropdownActivation() {
-    return (id) => {
+  handleDropdownActivation(id) {
+    return () => {
       if (this.state.activeDropdown === id) {
         this.setState({ activeDropdown: null })
       } else {
         this.setState({ activeDropdown: id })}
-    }
-  }
-
-  isOpen() {
-    return (id) => {
-      return id === this.state.activeDropdown
     }
   }
 
@@ -75,22 +72,22 @@ export default class App extends React.Component {
           <h1>The dropdown</h1>
           <Dropdown
             label="Your favorite fruit"
-            id={1}
+            id={dropdowns[0]}
             options={fruit}
             selected={this.state.selectedFruit}
-            isOpen={this.isOpen()}
+            isOpen={this.state.activeDropdown === dropdowns[0]}
             onSelect={this.handleFruitSelection()}
-            onActivate={this.handleDropdownActivation()}
+            onActivate={this.handleDropdownActivation(dropdowns[0])}
           ></Dropdown>
 
           <Dropdown
             label="Your favorite ice cream"
-            id={2}
+            id={dropdowns[1]}
             options={iceCream}
             selected={this.state.selectedIceCream}
-            isOpen={this.isOpen()}
+            isOpen={this.state.activeDropdown === dropdowns[1]}
             onSelect={this.handleIceCreamSelection()}
-            onActivate={this.handleDropdownActivation()}
+            onActivate={this.handleDropdownActivation(dropdowns[1])}
           ></Dropdown>
         </section>
       </div>
